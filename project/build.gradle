@@ -15,7 +15,10 @@ test {
     exclude '**/*Task.class'
 }
 
-tomcatRun.contextPath = '/'
+tomcatRun {
+    httpPort = 8090
+    contextPath = '/'
+}
 
 dependencies {
     def tomcatVersion='7.0.59'

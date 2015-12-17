@@ -38,7 +38,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-11">
-            <h1>Toutes les recettes</h1>
+            <h1>Toutes les recettess</h1>
         </div>
         <div class="col-xs-1">
             <a href="/admin/recettes/edit" class="btn btn-default">Ajouter</a>
