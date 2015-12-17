@@ -51,7 +51,7 @@
                         <spring:bind path="title">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="title">Titre ${fn:escapeXml(status.errorMessage)}</label>
-                                <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" />
+                                <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" data-role="tags" data-service-url="/tags.json"/>
                             </div>
                         </spring:bind>
                     </div>
