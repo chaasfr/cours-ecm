@@ -51,7 +51,7 @@
                         <spring:bind path="title">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="title">Titre ${fn:escapeXml(status.errorMessage)}</label>
-                                <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" data-role="tags" data-service-url="/tags.json"/>
+                                <form:input cssClass="form-control" id="title" placeholder="Titre" path="title" />
                             </div>
                         </spring:bind>
                     </div>
@@ -79,7 +79,7 @@
                         <spring:bind path="tags">
                             <div class="form-group ${status.error ? 'has-error' : ''}">
                                 <label class="control-label" for="tags">Tags ${fn:escapeXml(status.errorMessage)}</label>
-                                <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="tag1,tag2" path="tagsAsString" />
+                                <form:input cssClass="form-control" id="tags" data-role="tags" placeholder="tag1,tag2" path="tagsAsString"  data-service-url="/tags.json" />
                             </div>
                         </spring:bind>
                     </div>
