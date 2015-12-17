@@ -49,7 +49,23 @@
             </c:forEach>
         </ul>
 
-        ${pagination.pages}
+        <nav>
+            <ul class="pagination">
+                <li class=${pagination.isFirstPage() ? "disabled":""}>
+                    <a href="/recettes?pageIndex=${pagination.getPageIndex()-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <c:forEach var="pages" items="${pagination.pages}">
+                    <li class=${pagination.getPageIndex() == pages ? "active":""}><a href="/recettes?pageIndex=${pages}">${pages}</a></li>
+                </c:forEach>
+                <li class=${pagination.isLastPage() ? "disabled":""}>
+                    <a href="/recettes?pageIndex=${pagination.getPageIndex()+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
 
     <fragments:footer />
