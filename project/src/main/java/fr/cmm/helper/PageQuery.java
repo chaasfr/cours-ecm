@@ -17,7 +17,7 @@ public class PageQuery {
     }
 
     public void setIndex(int index) {
-        this.index = index;
+            this.index = Math.max(0,index);
     }
 
     public int getSize() {
