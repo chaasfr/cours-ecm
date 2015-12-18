@@ -1,6 +1,8 @@
 package fr.cmm.helper;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static java.util.Arrays.asList;
 
@@ -11,6 +13,8 @@ public class Pagination {
     private int pageSize;
 
     private long count;
+
+    public static final int PAGINATION_SIZE = 10;
 
     public int getPreviousPageIndex() {
         return isFirstPage() ? pageIndex : pageIndex - 1;
@@ -29,16 +33,29 @@ public class Pagination {
     }
 
     public int getPageCount() {
-        if(count%pageSize==0) {
-            return (int) count / pageSize;
-        }
-        else{
-            return (int) (count / pageSize) +1;
+        if(count==0){
+            return 1 ;
+        }else {
+            if (count % pageSize == 0) {
+                return (int) (count / pageSize);
+            } else {
+                return (int) (count / pageSize) + 1;
+            }
         }
     }
 
     public List<Integer> getPages() {
-        return asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        int currentIndex = getPageIndex();
+        int pageCount = getPageCount();
+        if (currentIndex<=PAGINATION_SIZE/2){
+            return IntStream.range(1,Math.min(PAGINATION_SIZE,pageCount )+1).boxed().collect(Collectors.toList());
+        } else{
+            if(currentIndex>=pageCount-PAGINATION_SIZE/2){
+                return IntStream.range(Math.max(pageCount-PAGINATION_SIZE+1,1),pageCount+1).boxed().collect(Collectors.toList());
+            }else {
+                return IntStream.range(currentIndex - (PAGINATION_SIZE / 2) + 1, Math.min(currentIndex + (PAGINATION_SIZE / 2) + 1, pageCount + 1)).boxed().collect(Collectors.toList());
+            }
+        }
     }
 
     public int getPageIndex() {
