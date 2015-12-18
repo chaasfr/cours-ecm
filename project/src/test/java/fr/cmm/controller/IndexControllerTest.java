@@ -2,6 +2,7 @@ package fr.cmm.controller;
 
 import fr.cmm.domain.Recipe;
 import fr.cmm.service.RecipeService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,7 +68,7 @@ public class IndexControllerTest {
     public void recettes() throws Exception {
         mockMvc.perform(get("/recettes?tag=choucroute"))
                 .andExpect(view().name("recettes"))
-                .andExpect(model().attribute("tag","choucroute"));
+                .andExpect(model().attributeExists("searchForm"));
     }
 
 }
