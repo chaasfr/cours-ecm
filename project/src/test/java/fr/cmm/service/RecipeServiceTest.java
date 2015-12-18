@@ -58,6 +58,13 @@ public class RecipeServiceTest {
     }
 
     @Test
+    public void findByIdWithInvalidId(){
+        String id="123pasvalide456";
+
+        Assert.assertEquals(null,recipeService.findById(id));
+    }
+
+    @Test
     public void findByQuery() {
         recipeService.save(new Recipe());
         recipeService.save(new Recipe());

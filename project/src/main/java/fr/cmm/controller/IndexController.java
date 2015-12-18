@@ -68,7 +68,7 @@ public class IndexController {
 
         return columns;
     }
-    
+
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
         Recipe recette=  recipeService.findById(id);

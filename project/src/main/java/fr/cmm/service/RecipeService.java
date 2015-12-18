@@ -44,7 +44,11 @@ public class RecipeService {
     }
 
     public Recipe findById(String id) {
-        return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class);
+        if(id.length() != 12){
+            return null;
+        } else {
+            return recipeCollection.findOne(new ObjectId(id)).as(Recipe.class);
+        }
     }
 
     public void save(Recipe recipe) {
