@@ -8,8 +8,8 @@ import static org.apache.commons.lang3.StringEscapeUtils.escapeXml10;
  */
 public class Functions {
     public static String textFormating(String s){
-        String temp=s.replace("\n","<br>");
-        String result=escapeXml10(temp);
+        String temp=escapeXml10(s);
+        String result=temp.replace("\n","<br>");
         return result;
     }
 }
