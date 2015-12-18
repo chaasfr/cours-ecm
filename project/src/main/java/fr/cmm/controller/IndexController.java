@@ -45,6 +45,7 @@ public class IndexController {
         pagination.setPageSize(pageQuery.getSize());
         pagination.setCount(recipeService.countByQuery(pageQuery));
 
+        model.put("tag", searchForm.getTag());
         model.put("recipes", recipeService.findByQuery(pageQuery));
         model.put("pagination", pagination);
 
