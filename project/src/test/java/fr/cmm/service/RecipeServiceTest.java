@@ -76,7 +76,15 @@ public class RecipeServiceTest {
 
     @Test
     public void countByQuery(){
+        PageQuery pageQuery = new PageQuery();
+        pageQuery.setTag("Tag2");
+        recipeService.save(new Recipe().withTags("Tag1","Tag2"));
+        recipeService.save(new Recipe().withTags("Tag3","Tag2"));
+        recipeService.save(new Recipe().withTags("Tag4","Tag2"));
+        recipeService.save(new Recipe().withTags("Tag3","Tag2"));
+        recipeService.save(new Recipe().withTags("Tag3","Tag1"));
 
+        Assert.assertEquals(4, recipeService.countByQuery(pageQuery));
     }
 
     @Test

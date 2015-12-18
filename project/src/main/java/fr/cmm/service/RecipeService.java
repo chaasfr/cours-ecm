@@ -37,7 +37,10 @@ public class RecipeService {
     }
 
     public long countByQuery(PageQuery query) {
-        return recipeCollection.count();
+        Iterable<Recipe> recipeCollection= findByQuery(query);
+        int i=0;
+        for( Recipe recipe: recipeCollection) i++;
+        return i;
     }
 
     public Iterator<Recipe> findRandom(int count) {
