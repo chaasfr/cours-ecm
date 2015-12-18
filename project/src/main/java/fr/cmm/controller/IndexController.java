@@ -5,23 +5,14 @@ import javax.inject.Inject;
 import fr.cmm.controller.form.SearchForm;
 import fr.cmm.helper.PageQuery;
 import fr.cmm.helper.Pagination;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import fr.cmm.helper.Columns;
 import fr.cmm.service.RecipeService;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
-
-
-@ResponseStatus(value = HttpStatus.NOT_FOUND)
-class ResourceNotFoundException extends RuntimeException {
-}
 
 
 @Controller
@@ -77,13 +68,18 @@ public class IndexController {
         return columns;
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public String handleResourceNotFoundException() {
+        return "notFound";
+    }
+
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
         model.put("recipe", recipeService.findById(id));
-        if(recipeService.isFound(id)) {
-            return "recette";
-        } else{
+        if(model.equals(null)) {
             throw new ResourceNotFoundException();
+        } else {
+            return "recette";
         }
     }
 

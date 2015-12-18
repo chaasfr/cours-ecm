@@ -55,5 +55,4 @@ public class RecipeService {
         return recipeCollection.distinct("tags").as(String.class);
     }
 
-    public boolean isFound(String id){ return !findById(id).equals(null);}
 }

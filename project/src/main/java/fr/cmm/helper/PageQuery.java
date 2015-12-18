@@ -4,7 +4,7 @@ public class PageQuery {
     // 0 based page index
     private int index = 0;
 
-    private int size = 1;
+    private int size = 10;
 
     private String tag;
 
