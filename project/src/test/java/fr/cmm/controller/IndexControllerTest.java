@@ -65,7 +65,7 @@ public class IndexControllerTest {
         Mockito.when(recipeService.findById(id)).thenReturn(null);
 
         mockMvc.perform(get("/recette/" + id))
-                .andExpect(model().attributeDoesNotExist());
+                .andExpect(status().is(404));
     }
 
     @Test

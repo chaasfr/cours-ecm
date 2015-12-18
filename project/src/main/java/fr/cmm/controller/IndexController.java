@@ -3,6 +3,7 @@ package fr.cmm.controller;
 import javax.inject.Inject;
 
 import fr.cmm.controller.form.SearchForm;
+import fr.cmm.domain.Recipe;
 import fr.cmm.helper.PageQuery;
 import fr.cmm.helper.Pagination;
 import org.springframework.stereotype.Controller;
@@ -67,16 +68,12 @@ public class IndexController {
 
         return columns;
     }
-
-    @ExceptionHandler(ResourceNotFoundException.class)
-    public String handleResourceNotFoundException() {
-        return "notFound";
-    }
-
+    
     @RequestMapping("/recette/{id}")
     public String recette(@PathVariable("id") String id, ModelMap model) {
-        model.put("recipe", recipeService.findById(id));
-        if(model.equals(null)) {
+        Recipe recette=  recipeService.findById(id);
+        model.put("recipe", recette);
+        if(recette==null) {
             throw new ResourceNotFoundException();
         } else {
             return "recette";
@@ -86,6 +83,16 @@ public class IndexController {
     @RequestMapping("/contact")
     public String contact() {
         return "contact";
+    }
+
+    @RequestMapping("/404")
+    public String quatrecentquatre() {
+        return "404";
+    }
+
+    @RequestMapping("/500")
+    public String cinqcent() {
+        return "500";
     }
 
     @RequestMapping("/mentions-legales")
