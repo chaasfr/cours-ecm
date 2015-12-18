@@ -71,4 +71,9 @@ public class IndexControllerTest {
                 .andExpect(model().attributeExists("searchForm"));
     }
 
+    @Test
+    public void page() throws Exception {
+        mockMvc.perform(get("/recettes?pageIndex=-1"))
+                .andExpect(view().name("recettes"));
+    }
 }
